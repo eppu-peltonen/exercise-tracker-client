@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react'
 import {Routes, Route} from 'react-router-dom'
 
 //Routes
+import Login from './routes/Login'
 import Exercises from './routes/Exercises'
 import Charts from './routes/Charts'
 import Home from './routes/Home'
@@ -13,12 +14,22 @@ import loginService from './services/login'
 import exerciseService from './services/exercises'
 
 //Components
-import LoginRegistration from './components/LoginRegistration'
 import Notification from './components/Notification'
 import ExerciseForm from './components/ExerciseForm'
 import DurationChart from './components/DurationChart'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
+
+// =============================================================================
+//                                   TODO
+// =============================================================================
+// - CSS: vaihda material UI / react bootstrap?
+// - Tee Login toiminnallisuus loppuun
+// - Login: Sign up linkki johtaa rekisteröinti sivulle. Käytä samaa linkitystä kuin navigaatiossa ja lisää App componenttiin oikea <Route>
+// - Navigaatio: kirjautumattoman näkymä: home ja login. kirjautuneen näkymä: home, logout, exercises, charts
+// - Login serviceen "logout" funktio ja johonkin renderöidään logout nappi
+// - Exercise näkymän tekeminen
+// - Charts näkymän tekeminen
 
 const App = () => {
 
@@ -60,18 +71,6 @@ const App = () => {
         <ExerciseForm createExercise={addExercise}/>
         <DurationChart/>
       </div>
-    )
-  }
-
-  const loginForm = () => {
-    return (
-      <LoginRegistration
-        username={username}
-        password={password}
-        setUsername={setUsername}
-        setPassword={setPassword}
-        handleLogin={handleLogin}
-      />
     )
   }
 
@@ -117,11 +116,12 @@ const App = () => {
 
   return (
     <>
-      <div className="w-full flex flex-col sm:flex-row flex-grow overflow-hidden">
+      <div className="w-full flex flex-col sm:flex-row flex-grow overflow-hidden h-screen">
         <Navigation/>
         <main role="main" className="w-full h-full flex-grow p-3 overflow-auto">
             <h1 className="text-6xl md:text-5xl mb-4 font-extrabold text-blue-600">Exercise Tracker</h1>
             <Routes>
+              <Route path="/login" element={<Login />} />
               <Route path="/exercises" element={<Exercises />} />
               <Route path="/charts" element={<Charts />} />
               <Route path="/" element={<Home />} />
