@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
+import {Outlet} from "react-router-dom"
+
 //Services
 import loginService from './services/login'
 import exerciseService from './services/exercises'
@@ -10,6 +12,7 @@ import Notification from './components/Notification'
 import ExerciseForm from './components/ExerciseForm'
 import DurationChart from './components/DurationChart'
 import Navigation from './components/Navigation'
+import Footer from './components/Footer'
 
 const App = () => {
 
@@ -86,28 +89,40 @@ const App = () => {
       }, 5000)
     }
   }
+  
+  // Vanha runko malliksi jos tarvii
+  /*
+  <div className='flex'>
+    <SideBar/>
+    <h1>
+      Exercise tracker
+    </h1>
+    <Notification message={errorMessage}/>
+    {
+      user === null ?
+        loginForm() :
+        <div>
+          <p>{user.username} logged in</p>
+          {exerciseContainer()}
+        </div>
+    }
+  </div>
+  */
 
   return (
     <>
       <div className="w-full flex flex-col sm:flex-row flex-grow overflow-hidden">
         <div className="sm:w-1/4 md:1/4 w-full flex-shrink flex-grow-0 p-4">
-        <Navigation/>
+          <Navigation/>
         </div>
         <main role="main" className="w-full h-full flex-grow p-3 overflow-auto">
           <h1 className="text-6xl md:text-5xl mb-4 font-extrabold text-blue-600" id="home">Exercise Tracker</h1>
-
+          <Outlet/>
         </main>
       </div>
-      <footer className="bg-blue-600 mx-4 rounded-xl">
-        <div className="px-4 py-3 text-white mx-auto">
-          <h1 className="text-2xl hidden sm:block mb-2">Exercise Tracker</h1>
-            <div className="text-xs py-2">
-              &copy;2022 Eppu Peltonen
-            </div>
-        </div>
-      </footer>
+      <Footer/>
     </>
   )
 }
 
-export default App;
+export default App
