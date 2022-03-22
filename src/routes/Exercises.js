@@ -1,7 +1,7 @@
 const Exercises = () => {
   return (
     <>
-      Exercises
+      Exercisesssss
     </>
   )
 }

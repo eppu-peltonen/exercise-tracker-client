@@ -1,22 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import './index.css';
-import App from './App';
-import Home from './routes/Home'
-import Exercises from './routes/Exercises';
-import Charts from './routes/Charts';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import './index.css'
 
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(
   <BrowserRouter>
-    <Routes>
-      <Route exact path="/" element={<App />}>
-        <Route path="home" element={<Home />}/>
-        <Route path="exercises" element={<Exercises />}/>
-        <Route path="charts" element={<Charts />}/>
-      </Route>
-    </Routes>
+    <App />
   </BrowserRouter>,
-  document.getElementById('root')
-);
+  document.getElementById('root'))

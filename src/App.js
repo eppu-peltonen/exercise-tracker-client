@@ -1,6 +1,12 @@
 import React, {useEffect, useState} from 'react'
 
-import {Outlet} from "react-router-dom"
+// Router
+import {Routes, Route} from 'react-router-dom'
+
+//Routes
+import Exercises from './routes/Exercises'
+import Charts from './routes/Charts'
+import Home from './routes/Home'
 
 //Services
 import loginService from './services/login'
@@ -112,12 +118,14 @@ const App = () => {
   return (
     <>
       <div className="w-full flex flex-col sm:flex-row flex-grow overflow-hidden">
-        <div className="sm:w-1/4 md:1/4 w-full flex-shrink flex-grow-0 p-4">
-          <Navigation/>
-        </div>
+        <Navigation/>
         <main role="main" className="w-full h-full flex-grow p-3 overflow-auto">
-          <h1 className="text-6xl md:text-5xl mb-4 font-extrabold text-blue-600" id="home">Exercise Tracker</h1>
-          <Outlet/>
+            <h1 className="text-6xl md:text-5xl mb-4 font-extrabold text-blue-600">Exercise Tracker</h1>
+            <Routes>
+              <Route path="/exercises" element={<Exercises />} />
+              <Route path="/charts" element={<Charts />} />
+              <Route path="/" element={<Home />} />
+            </Routes>
         </main>
       </div>
       <Footer/>
@@ -126,3 +134,4 @@ const App = () => {
 }
 
 export default App
+
