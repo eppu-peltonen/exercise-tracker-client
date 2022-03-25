@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
 // Router
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, useNavigate} from 'react-router-dom'
 
 //Routes
 import Login from './routes/Login'
@@ -20,33 +20,24 @@ import DurationChart from './components/DurationChart'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
 
+
 // =============================================================================
 //                                   TODO
 // =============================================================================
 // - CSS: vaihda material UI / react bootstrap?
-// - Tee Login toiminnallisuus loppuun
 // - Login: Sign up linkki johtaa rekisteröinti sivulle. Käytä samaa linkitystä kuin navigaatiossa ja lisää App componenttiin oikea <Route>
-// - Navigaatio: kirjautumattoman näkymä: home ja login. kirjautuneen näkymä: home, logout, exercises, charts
-// - Login serviceen "logout" funktio ja johonkin renderöidään logout nappi
 // - Exercise näkymän tekeminen
+// - Exercise näkymään tuntien ja kilsojen ja ym yhteismäärä ja keskiarvoja ja muuta mitä keksii
 // - Charts näkymän tekeminen
+
+
 
 const App = () => {
 
-  const [exercises, setExercises] = useState([])
-  const [errorMessage, setErrorMessage] = useState([])
+  const [message, setMessage] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
-
-  //Get all exercises at the beginning
-  useEffect(() => {
-    exerciseService
-      .getAll()
-      .then(initialExercises => {
-        setExercises(initialExercises)
-      })
-  }, [])
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedExerciseAppUser')
@@ -57,78 +48,59 @@ const App = () => {
     }
   }, [])
 
-  const addExercise = (exerciseObject) => {
-    exerciseService
-      .create(exerciseObject)
-      .then(returnedExercise => {
-        setExercises(exercises.concat(returnedExercise))
-      })
-  }
-
-  const exerciseContainer = () => {
-    return (
-      <div>
-        <ExerciseForm createExercise={addExercise}/>
-        <DurationChart/>
-      </div>
-    )
-  }
+  //Navigator to use after login and logout events
+  let navigate = useNavigate()
 
   const handleLogin = async (event) => {
     event.preventDefault()
-
     try {
       const user = await loginService.login({
         username, password
       })
-      console.log(user)
       window.localStorage.setItem('loggedExerciseAppUser', JSON.stringify(user))
       exerciseService.setToken(user.token)
       setUser(user)
       setUsername('')
       setPassword('')
+      // Navigate to home page after login
+      navigate('/')
+      window.location.reload()
     } catch (exception) {
-      setErrorMessage('wrong credentials')
+      setMessage('wrong credentials')
       setTimeout(() => {
-        setErrorMessage(null)
+        setMessage(null)
       }, 5000)
     }
   }
-  
-  // Vanha runko malliksi jos tarvii
-  /*
-  <div className='flex'>
-    <SideBar/>
-    <h1>
-      Exercise tracker
-    </h1>
-    <Notification message={errorMessage}/>
-    {
-      user === null ?
-        loginForm() :
-        <div>
-          <p>{user.username} logged in</p>
-          {exerciseContainer()}
-        </div>
-    }
-  </div>
-  */
+
+  const handleLogout = () => {
+    window.localStorage.removeItem('loggedExerciseAppUser')
+    setUser(null)
+    // Navigate to home page after logout
+    navigate('/')
+    window.location.reload()
+    setMessage(`${user.username} logged out`)
+    setTimeout(() => {
+      setMessage(null)
+    }, 5000)
+  }
 
   return (
     <>
-      <div className="w-full flex flex-col sm:flex-row flex-grow overflow-hidden h-screen">
-        <Navigation/>
-        <main role="main" className="w-full h-full flex-grow p-3 overflow-auto">
-            <h1 className="text-6xl md:text-5xl mb-4 font-extrabold text-blue-600">Exercise Tracker</h1>
+      <div className="w-full flex flex-col overflow-hidden h-screen">
+        <Navigation user={user} logout={handleLogout}/>
+        <main role="main" className="w-full h-full flex-grow p-3 overflow-auto border-red-600 border-2">
+            <h1 className="text-6xl md:text-5xl mb-8 font-extrabold text-blue-600">Exercise Tracker</h1>
+            <Notification message={message} />
             <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/exercises" element={<Exercises />} />
+              <Route path="/login" element={<Login username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleLogin={handleLogin} />} />
+              <Route path="/exercises" element={<Exercises user={user}/>} />
               <Route path="/charts" element={<Charts />} />
               <Route path="/" element={<Home />} />
             </Routes>
         </main>
+        <Footer/>
       </div>
-      <Footer/>
     </>
   )
 }

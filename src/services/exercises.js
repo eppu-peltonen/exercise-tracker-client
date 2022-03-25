@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 const baseUrl = '/api/exercises'
 
 let token = null
@@ -7,12 +8,12 @@ const setToken = newToken => {
   token = `bearer ${newToken}`
 }
 
-const getAll = () => {
-  const req = axios.get(baseUrl)
+const getById = (id) => {
+  const req = axios.get(`${baseUrl}/${id}`)
   return req.then(res => res.data)
 }
 
-const create = async newObject => {
+const create = async (newObject) => {
   const config = {
     headers: {Authorization: token},
   }
@@ -22,7 +23,7 @@ const create = async newObject => {
 
 const exportObject = {
   setToken,
-  getAll,
+  getById,
   create
 }
 
