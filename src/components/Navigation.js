@@ -7,7 +7,7 @@ const Navigation = ({user, logout}) => {
 
   return(
     <div className='sm:w-1/5 md:1/4 w-full flex-shrink flex-grow-0 p-4 border-blue-500 border-2'>
-      <div className="py-5 bg-gray-700 text-white text-center">
+      <div className="sticky top-0 p-4 bg-gray-500 rounded-xl w-full">
         <ul className="flex sm:flex-col overflow-hidden content-center justify-between">
           <li className="py-2 hover:bg-gray-300 rounded">
             <Link to="/">

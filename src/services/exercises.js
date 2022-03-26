@@ -24,7 +24,7 @@ const create = async (newObject) => {
 const exportObject = {
   setToken,
   getById,
-  create
+  create,
 }
 
 export default exportObject

@@ -20,11 +20,14 @@ import DurationChart from './components/DurationChart'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
 
+import NavTest from './components/NavTest'
+import NavTest2 from './components/NavTest2'
+
 
 // =============================================================================
 //                                   TODO
 // =============================================================================
-// - CSS: vaihda material UI / react bootstrap?
+// - CSS
 // - Login: Sign up linkki johtaa rekisteröinti sivulle. Käytä samaa linkitystä kuin navigaatiossa ja lisää App componenttiin oikea <Route>
 // - Exercise näkymän tekeminen
 // - Exercise näkymään tuntien ja kilsojen ja ym yhteismäärä ja keskiarvoja ja muuta mitä keksii
@@ -88,17 +91,19 @@ const App = () => {
   return (
     <>
       <div className="w-full flex flex-col overflow-hidden h-screen">
-        <Navigation user={user} logout={handleLogout}/>
-        <main role="main" className="w-full h-full flex-grow p-3 overflow-auto border-red-600 border-2">
-            <h1 className="text-6xl md:text-5xl mb-8 font-extrabold text-blue-600">Exercise Tracker</h1>
-            <Notification message={message} />
-            <Routes>
-              <Route path="/login" element={<Login username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleLogin={handleLogin} />} />
-              <Route path="/exercises" element={<Exercises user={user}/>} />
-              <Route path="/charts" element={<Charts />} />
-              <Route path="/" element={<Home />} />
-            </Routes>
-        </main>
+        <NavTest2 user={user} logout={handleLogout}/>
+        {/* <NavTest user={user} logout={handleLogout}/> */}
+        {/* <Navigation user={user} logout={handleLogout}/> */}
+
+        <div role="main" className="w-full h-full flex-grow flex justify-center p-5 overflow-auto">
+          <Notification message={message} />
+          <Routes>
+            <Route path="/login" element={<Login username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleLogin={handleLogin} />} />
+            <Route path="/exercises" element={<Exercises user={user}/>} />
+            <Route path="/charts" element={<Charts />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </div>
         <Footer/>
       </div>
     </>
