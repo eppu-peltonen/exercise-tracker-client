@@ -1,32 +1,12 @@
-import {useEffect, useState} from 'react'
-import exerciseService from '../services/exercises'
+import ExerciseForm from '../components/ExerciseForm'
+import DurationChart from '../components/DurationChart'
 
-const Exercises = ({user}) => {
+const Exercises = ({exercises, user}) => {
 
-  const [exercises, setExercises] = useState([])
+  // Filter user exercises
+  const userExercises = exercises.filter(exercise => exercise.user_id === user.id)
 
-  //Get users exercises at the beginning
-  useEffect(() => {
-    exerciseService
-      .getById(user.id)
-      .then(initialExercises => {
-        //Check duration and fill in zeros if hours, minutes or seconds are not given
-        for (var i = 0; i <initialExercises.length; i++) {
-          if (initialExercises[i].duration.hours === undefined) {
-            initialExercises[i].duration.hours = 0
-          }
-          if (initialExercises[i].duration.minutes === undefined) {
-            initialExercises[i].duration.minutes = 0
-          }
-          if (initialExercises[i].duration.seconds === undefined) {
-            initialExercises[i].duration.seconds = 0
-          }
-
-        }
-        setExercises(initialExercises)
-      })
-  }, [user])
-
+  /*
   const addExercise = (exerciseObject) => {
     exerciseService
       .create(exerciseObject)
@@ -34,11 +14,13 @@ const Exercises = ({user}) => {
         setExercises(exercises.concat(returnedExercise))
       })
   }
+  */
 
   return (
     <div>
+      
       {
-        exercises.map(exercise => (
+        userExercises.map(exercise => (
           <p key={exercise.id}>
             sport: {exercise.sport},
             start time: {exercise.start_time},

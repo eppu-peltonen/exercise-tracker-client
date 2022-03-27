@@ -2,9 +2,7 @@ const Home = () => {
   return (
     <>
     <div className="flex justify-center">
-      Save your exercises and take a look at different charts drawn from your data.
-
-      What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing
+      <p>What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing
         and typesetting industry. Lorem Ipsum has been the industry's standard
         dummy text ever since the 1500s, when an unknown printer took a galley
         of type and scrambled it to make a type specimen book. It has survived
@@ -301,6 +299,7 @@ const Home = () => {
         interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et
         Malorum" by Cicero are also reproduced in their exact original form,
         accompanied by English versions from the 1914 translation by H. Rackham.
+        </p>
     </div>
     </>
   )
