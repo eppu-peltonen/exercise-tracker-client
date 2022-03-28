@@ -18,17 +18,6 @@ import Notification from './components/Notification'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
 
-
-// =============================================================================
-//                                   TODO
-// =============================================================================
-// - CSS
-// - händlää token expired clientissä: varmaan expiration time isommaks
-// - Login: Sign up linkki johtaa rekisteröinti sivulle. Käytä samaa linkitystä kuin navigaatiossa ja lisää App componenttiin oikea <Route>
-// - Exercise näkymään tuntien ja kilsojen ja ym yhteismäärä ja keskiarvoja ja muuta mitä keksii
-// - Charts näkymän tekeminen
-// - SERVER: harjoituksen poisto endpoint, harjoituksen muokkaus endpoint
-
 const App = () => {
 
   const [message, setMessage] = useState([])
