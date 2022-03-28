@@ -17,8 +17,6 @@ import exerciseService from './services/exercises'
 import Notification from './components/Notification'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
-import NavTest from './components/NavTest'
-import NavTest2 from './components/NavTest2'
 
 
 // =============================================================================
@@ -100,10 +98,7 @@ const App = () => {
   return (
     <div>
       <div className="w-full h-screen flex flex-col">
-        <NavTest2 user={user} logout={handleLogout}/>
-        {/* <NavTest user={user} logout={handleLogout}/> */}
-        {/* <Navigation user={user} logout={handleLogout}/> */}
-
+        <Navigation user={user} logout={handleLogout}/>
         <div className="flex flex-grow justify-center overflow-auto h-full">
           <Notification message={message} />
           <Routes>
