@@ -1,8 +1,9 @@
 const Charts = () => {
+
   return (
-    <main>
-      <h2>Charts</h2>
-    </main>
+    <div className='flex flex-col items-center mt-10'>
+      Charts
+    </div>
   )
 }
 

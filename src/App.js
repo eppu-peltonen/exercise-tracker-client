@@ -25,10 +25,14 @@ import NavTest2 from './components/NavTest2'
 //                                   TODO
 // =============================================================================
 // - CSS
+// - ExerciseForm: Duration kesken
+// - ExerciseForm: Sport list kesken
+// - händlää token expired clientissä
 // - Login: Sign up linkki johtaa rekisteröinti sivulle. Käytä samaa linkitystä kuin navigaatiossa ja lisää App componenttiin oikea <Route>
 // - Exercise näkymän tekeminen
 // - Exercise näkymään tuntien ja kilsojen ja ym yhteismäärä ja keskiarvoja ja muuta mitä keksii
 // - Charts näkymän tekeminen
+// - SERVER: harjoituksen poisto endpoint, harjoituksen muokkaus endpoint
 
 const App = () => {
 
@@ -55,7 +59,7 @@ const App = () => {
       .then(initialExercises => {
         setExercises(initialExercises)
       })
-  }, [user])
+  }, [])
 
   let navigate = useNavigate()
 
@@ -94,7 +98,7 @@ const App = () => {
   }
 
   return (
-    <>
+    <div>
       <div className="w-full h-screen flex flex-col">
         <NavTest2 user={user} logout={handleLogout}/>
         {/* <NavTest user={user} logout={handleLogout}/> */}
@@ -104,14 +108,14 @@ const App = () => {
           <Notification message={message} />
           <Routes>
             <Route path="/login" element={<Login username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleLogin={handleLogin} />} />
-            <Route path="/exercises" element={<Exercises exercises={exercises} user={user}/>} />
+            <Route path="/exercises" element={<Exercises exercises={exercises} setExercises={setExercises} user={user}/>} />
             <Route path="/charts" element={<Charts />} />
             <Route path="/" element={<Home />} />
           </Routes>
         </div>
         <Footer/>
       </div>
-    </>
+    </div>
   )
 }
 
