@@ -23,11 +23,8 @@ import Footer from './components/Footer'
 //                                   TODO
 // =============================================================================
 // - CSS
-// - ExerciseForm: Duration kesken
-// - ExerciseForm: Sport list kesken
-// - händlää token expired clientissä
+// - händlää token expired clientissä: varmaan expiration time isommaks
 // - Login: Sign up linkki johtaa rekisteröinti sivulle. Käytä samaa linkitystä kuin navigaatiossa ja lisää App componenttiin oikea <Route>
-// - Exercise näkymän tekeminen
 // - Exercise näkymään tuntien ja kilsojen ja ym yhteismäärä ja keskiarvoja ja muuta mitä keksii
 // - Charts näkymän tekeminen
 // - SERVER: harjoituksen poisto endpoint, harjoituksen muokkaus endpoint

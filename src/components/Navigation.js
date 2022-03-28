@@ -41,16 +41,20 @@ const Navigation = ({user, logout}) => {
               }
               {
                 user ?
-                  <button onClick={logout} className="flex font-medium text-gray-300 hover:text-green-600 last:cursor-pointer transition-colors duration-300">
-                    <FiLogOut size='28' className="w-7 sm:mx-2 mx-4 inline" />
-                    <span className="hidden sm:inline">Logout</span>
-                  </button>
+                  <>
+                    <button onClick={logout} className="flex font-medium text-gray-300 hover:text-green-600 last:cursor-pointer transition-colors duration-300">
+                      <FiLogOut size='28' className="w-7 sm:mx-2 mx-4 inline" />
+                      <span className="hidden sm:inline">Logout</span>
+                    </button>
+                    <p className='text-lg justify-end font-bold text-gray-300'>logged in as {user.username}</p>
+                  </>
                 :
                   <Link to="/login" className="flex font-medium text-gray-300 hover:text-green-600 cursor-pointer transition-colors duration-300">
                     <FiLogIn size='28' className='"w-7 sm:mx-2 mx-4 inline'/>
                     <span className="hidden sm:inline">Login</span>
                   </Link>
               }
+              
               </div>
             </div>
           </div>
@@ -130,10 +134,13 @@ const Navigation = ({user, logout}) => {
                 {
                   user
                   ?
-                    <button onClick={logout} className="flex font-medium text-gray-300 hover:text-green-600 cursor-pointer transition-colors duration-300">
-                      <FiLogOut size='28' className="w-7 sm:mx-2 mx-4 inline" />
-                      <span>Logout</span>
-                    </button>
+                    <>
+                      <button onClick={logout} className="flex font-medium text-gray-300 hover:text-green-600 cursor-pointer transition-colors duration-300">
+                        <FiLogOut size='28' className="w-7 sm:mx-2 mx-4 inline" />
+                        <span>Logout</span>
+                      </button>
+                      <p className='text-lg justify-end font-bold text-gray-300'>logged in as {user.username}</p>
+                    </>
                   :
                     <Link to="/login" className="flex font-medium text-gray-400 hover:text-green-600 cursor-pointer transition-colors duration-300">
                       <FiLogIn size='28' className='"w-7 sm:mx-2 mx-4 inline'/>

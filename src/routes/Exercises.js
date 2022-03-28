@@ -1,7 +1,6 @@
 import ExerciseForm from '../components/ExerciseForm'
 import DurationChart from '../components/DurationChart'
 import React, { useRef } from "react";
-import DatePicker from "react-datepicker";
 import exerciseService from '../services/exercises'
 import Togglable from '../components/Togglable';
 
@@ -11,8 +10,6 @@ import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 
 const Exercises = ({exercises, setExercises, user}) => {
-
-  console.log(exercises)
 
   const exerciseFormRef = useRef()
 
@@ -30,18 +27,23 @@ const Exercises = ({exercises, setExercises, user}) => {
 
   return (
     <div className='mt-10'>
-    <Togglable buttonLabel='Add exercise' ref={exerciseFormRef}>
-      <ExerciseForm createExercise={addExercise}/>
-    </Togglable>
-      {
-        userExercises.map(exercise => (
-          <p key={exercise.id}>
-            sport: {exercise.sport},
-            start time: {(exercise.start_time.toLocaleString('fi-FI'))},
-            duration: {exercise.duration}
-          </p>
-        ))
-      }
+      <h1 className="text-4xl font-semibold text-green-600 mb-10 flex justify-center">Exercises</h1>
+      <Togglable buttonLabel='Add new exercise' ref={exerciseFormRef}>
+        <ExerciseForm createExercise={addExercise}/>
+      </Togglable>
+      <div className='mt-8'>
+        {
+          userExercises.map(exercise => (
+            <div key={exercise.id} className="border-b border-gray-500 pb-4 grid grid-cols-1 md:grid-cols-5 gap-0">
+              <div className='border-1 border-gray-300 rounded'>{exercise.sport}</div>
+              <div>{exercise.duration}</div>
+              <div>{exercise.distance} km</div>
+              <div>{exercise.avg_hr} BPM</div>
+              <div>{(exercise.start_time.toLocaleString('fi-FI'))}</div>
+            </div>
+          ))
+        }
+      </div>
     </div>
   )
 }
