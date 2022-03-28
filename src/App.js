@@ -36,7 +36,7 @@ const App = () => {
     }
   }, [])
 
-  // Get all exercises at the beginning
+  // Get users exercises at the beginning
   useEffect(() => {
     exerciseService
       .getAll()
@@ -90,7 +90,7 @@ const App = () => {
           <Routes>
             <Route path="/login" element={<Login username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleLogin={handleLogin} />} />
             <Route path="/exercises" element={<Exercises exercises={exercises} setExercises={setExercises} user={user}/>} />
-            <Route path="/charts" element={<Charts />} />
+            <Route path="/charts" element={<Charts exercises={exercises} user={user} />} />
             <Route path="/" element={<Home />} />
           </Routes>
         </div>

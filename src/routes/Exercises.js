@@ -1,5 +1,4 @@
 import ExerciseForm from '../components/ExerciseForm'
-import DurationChart from '../components/DurationChart'
 import React, { useRef } from "react";
 import exerciseService from '../services/exercises'
 import Togglable from '../components/Togglable';
@@ -27,7 +26,7 @@ const Exercises = ({exercises, setExercises, user}) => {
 
   return (
     <div className='mt-10'>
-      <h1 className="text-4xl font-semibold text-green-600 mb-10 flex justify-center">Exercises</h1>
+      <h1 className="text-4xl font-semibold text-green-600 mb-10 flex justify-center">Your exercises</h1>
       <Togglable buttonLabel='Add new exercise' ref={exerciseFormRef}>
         <ExerciseForm createExercise={addExercise}/>
       </Togglable>
