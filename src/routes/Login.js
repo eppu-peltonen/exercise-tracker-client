@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom"
+
 const Login = ({
   username,
   setUsername,
@@ -5,9 +7,6 @@ const Login = ({
   setPassword,
   handleLogin
 }) => {
-
-  //TODO: Rekisteröinti
-  // Sign up linkki johtaa rekisteröinti sivulle. Käytä samaa linkitystä kuin navigaatiosta ja lisää App componenttiin <Route>
 
   return (
     <div className="w-full max-w-xs">
@@ -29,10 +28,10 @@ const Login = ({
           <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
             Sign In
           </button>
-          {/* <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+          <Link to="/register" className="inline-block align-baseline font-bold text-sm text-green-600 hover:text-green-800">
             <p>Don't have an account?</p>
             <p>Sign up!</p>
-          </a> */}
+          </Link>
         </div>
       </form>
     </div>

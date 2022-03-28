@@ -78,7 +78,7 @@ const Charts = ({exercises, user}) => {
   return (
     <div className='mt-10'>
       {
-        exercises.length === 0
+        userExercises.length === 0
         ?
           <div className="text-xl">Add some exercises to see your data.</div>
         :

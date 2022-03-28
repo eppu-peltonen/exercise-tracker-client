@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react'
 import {Routes, Route, useNavigate} from 'react-router-dom'
 
 //Routes
+import Register from './routes/Register'
 import Login from './routes/Login'
 import Exercises from './routes/Exercises'
 import Charts from './routes/Charts'
@@ -12,6 +13,7 @@ import Home from './routes/Home'
 //Services
 import loginService from './services/login'
 import exerciseService from './services/exercises'
+import userService from './services/users'
 
 //Components
 import Notification from './components/Notification'
@@ -25,6 +27,9 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [exercises, setExercises] = useState([])
+
+  const [newUser, setNewUser] = useState('')
+  const [newPassword, setNewPassword] = useState('')
 
   //Find and set user at the beginning if stored
   useEffect(() => {
@@ -69,7 +74,8 @@ const App = () => {
     }
   }
 
-  const handleLogout = () => {
+  const handleLogout = (event) => {
+    event.preventDefault()
     window.localStorage.removeItem('loggedExerciseAppUser')
     setUser(null)
     // Navigate to home page after logout
@@ -81,6 +87,23 @@ const App = () => {
     }, 5000)
   }
 
+  const handleRegister = async (event) => {
+    event.preventDefault()
+    try {
+      await userService.addUser({
+        newUser, newPassword
+      })
+      setUsername('')
+      setPassword('')
+      navigate('/login')
+    } catch (exception) {
+      setMessage("username already registered")
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
+    }
+  }
+
   return (
     <div>
       <div className="w-full h-screen flex flex-col">
@@ -88,10 +111,55 @@ const App = () => {
         <div className="flex flex-grow justify-center overflow-auto h-full">
           <Notification message={message} />
           <Routes>
-            <Route path="/login" element={<Login username={username} setUsername={setUsername} password={password} setPassword={setPassword} handleLogin={handleLogin} />} />
-            <Route path="/exercises" element={<Exercises exercises={exercises} setExercises={setExercises} user={user}/>} />
-            <Route path="/charts" element={<Charts exercises={exercises} user={user} />} />
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/register"
+              element={
+                <Register
+                  handleRegister={handleRegister}
+                  newUser={newUser}
+                  setNewUser={setNewUser}
+                  newPassword={newPassword}
+                  setNewPassword={setNewPassword}
+                />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <Login
+                  username={username}
+                  setUsername={setUsername}
+                  password={password}
+                  setPassword={setPassword}
+                  handleLogin={handleLogin} 
+                />
+              }
+            />
+            <Route
+              path="/exercises"
+              element={
+                <Exercises
+                  exercises={exercises}
+                  setExercises={setExercises}
+                  user={user}
+                />
+              }
+            />
+            <Route
+              path="/charts"
+              element={
+                <Charts
+                  exercises={exercises}
+                  user={user}
+                />
+              }
+            />
+            <Route
+              path="/"
+              element={
+                <Home />
+              }  
+            />
           </Routes>
         </div>
         <Footer/>
