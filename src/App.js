@@ -108,9 +108,15 @@ const App = () => {
     <div>
       <div className="w-full h-screen flex flex-col">
         <Navigation user={user} logout={handleLogout}/>
-        <div className="flex flex-grow justify-center overflow-auto h-full">
+        <div className="flex flex-grow flex-col justify-center overflow-auto h-full">
           <Notification message={message} />
           <Routes>
+            <Route
+                path="/"
+                element={
+                  <Home />
+                }  
+              />
             <Route
               path="/register"
               element={
@@ -145,6 +151,7 @@ const App = () => {
                 />
               }
             />
+            
             <Route
               path="/charts"
               element={
@@ -153,12 +160,6 @@ const App = () => {
                   user={user}
                 />
               }
-            />
-            <Route
-              path="/"
-              element={
-                <Home />
-              }  
             />
           </Routes>
         </div>

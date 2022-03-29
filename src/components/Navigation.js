@@ -28,11 +28,11 @@ const Navigation = ({user, logout}) => {
               {
                 user && (
                   <>
-                    <Link to="/exercises" className="flex font-medium text-gray-300 hover:text-green-600 cursor-pointer transition-colors duration-300">
+                    <Link to="/exercises" className="flex font-semibold text-gray-300 hover:text-green-600 cursor-pointer transition-colors duration-300">
                       <FiActivity size='28' className='"w-7 sm:mx-2 mx-4 inline'/>
                       <span className="hidden sm:inline">Exercises</span>
                     </Link>  
-                    <Link to="/charts" className="flex font-medium text-gray-300 hover:text-green-600 cursor-pointer transition-colors duration-300">
+                    <Link to="/charts" className="flex font-semibold text-gray-300 hover:text-green-600 cursor-pointer transition-colors duration-300">
                       <FiBarChart2 size='28' className='"w-7 sm:mx-2 mx-4 inline'/>
                       <span className="hidden sm:inline">Charts</span>
                     </Link>
@@ -42,7 +42,7 @@ const Navigation = ({user, logout}) => {
               {
                 user ?
                   <>
-                    <button onClick={logout} className="flex font-medium text-gray-300 hover:text-green-600 last:cursor-pointer transition-colors duration-300">
+                    <button onClick={logout} className="flex font-semibold text-gray-300 hover:text-green-600 last:cursor-pointer transition-colors duration-300">
                       <FiLogOut size='28' className="w-7 sm:mx-2 mx-4 inline" />
                       <span className="hidden sm:inline">Logout</span>
                     </button>
