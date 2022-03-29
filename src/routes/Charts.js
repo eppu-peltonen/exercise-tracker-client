@@ -112,7 +112,7 @@ const Charts = ({exercises, user}) => {
   return (
     <div className='mt-10 flex flex-col overflow-auto'>
       {
-        userExercises.length === 0
+        exercises.length === 0
         ?
           <div className="text-xl">Add some exercises to see your data.</div>
         :
