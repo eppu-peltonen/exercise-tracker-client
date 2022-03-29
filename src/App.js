@@ -106,9 +106,9 @@ const App = () => {
 
   return (
     <div>
+      {/* <Charts exercises={exercises} user={user}/> */}
       <div className="w-full h-screen flex flex-col">
         <Navigation user={user} logout={handleLogout}/>
-        <div className="flex flex-grow justify-center overflow-auto h-full">
           <Notification message={message} />
           <Routes>
             <Route
@@ -161,7 +161,6 @@ const App = () => {
               }  
             />
           </Routes>
-        </div>
         <Footer/>
       </div>
     </div>
