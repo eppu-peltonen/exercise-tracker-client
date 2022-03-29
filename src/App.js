@@ -3,12 +3,6 @@ import React, {useEffect, useState} from 'react'
 // Router
 import {Routes, Route, useNavigate} from 'react-router-dom'
 
-//Routes
-import Register from './routes/Register'
-import Login from './routes/Login'
-import Exercises from './routes/Exercises'
-import Charts from './routes/Charts'
-import Home from './routes/Home'
 
 //Services
 import loginService from './services/login'
@@ -19,6 +13,11 @@ import userService from './services/users'
 import Notification from './components/Notification'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
+import Register from './components/Register'
+import Login from './components/Login'
+import Exercises from './components/Exercises'
+import Charts from './components/Charts'
+import Home from './components/Home'
 
 const App = () => {
 
@@ -108,9 +107,47 @@ const App = () => {
     <div>
       <div className="w-full h-screen flex flex-col">
         <Navigation user={user} logout={handleLogout}/>
-        <div className="flex flex-grow justify-center overflow-auto h-full">
+        <div className="flex flex-grow flex-col justify-center items-center overflow-auto h-full">
           <Notification message={message} />
-          <Routes>
+
+          <Login
+            username={username}
+            setUsername={setUsername}
+            password={password}
+            setPassword={setPassword}
+            handleLogin={handleLogin} 
+          />
+
+          <Register
+            handleRegister={handleRegister}
+            newUser={newUser}
+            setNewUser={setNewUser}
+            newPassword={newPassword}
+            setNewPassword={setNewPassword}
+          />
+
+          {
+            user ?
+              <>
+                <Exercises
+                  exercises={exercises}
+                  setExercises={setExercises}
+                  user={user}
+                />
+
+                <Charts
+                  exercises={exercises}
+                  user={user}
+                />
+              </>
+            :
+              <div>Login to see your exercises</div>
+          }
+          
+
+          
+
+         {/*  <Routes>
             <Route
               path="/register"
               element={
@@ -160,7 +197,7 @@ const App = () => {
                 <Home />
               }  
             />
-          </Routes>
+          </Routes> */}
         </div>
         <Footer/>
       </div>
