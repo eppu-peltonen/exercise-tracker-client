@@ -11,7 +11,7 @@ const Navigation = ({user, logout}) => {
     <>
 
   <nav id="header" className="bg-gray-800 fixed w-full z-10 top-0 pb-3 shadow">
-		<div className="w-full container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3">
+		<div className="w-full xl:max-w-5xl container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3">
 				
 			<div className="w-1/2 pl-2 md:pl-0">
 				<Link to='/' className="text-gray-100 text-base xl:text-xl no-underline hover:no-underline font-bold"> 

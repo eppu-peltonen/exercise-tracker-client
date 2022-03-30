@@ -1,5 +1,4 @@
 import './App.css'
-
 import React, {useEffect, useState} from 'react'
 
 // Router
@@ -8,8 +7,7 @@ import {Routes, Route, useNavigate} from 'react-router-dom'
 //Routes
 import Register from './routes/Register'
 import Login from './routes/Login'
-import Exercises from './components/ExerciseList'
-import Charts from './components/Charts'
+import Exercises from './routes/Exercises'
 
 //Services
 import loginService from './services/login'
@@ -19,8 +17,6 @@ import userService from './services/users'
 //Components
 import Notification from './components/Notification'
 import Navigation from './components/Navigation'
-import Footer from './components/Footer'
-import Divider from './components/Divider'
 
 const App = () => {
 
@@ -66,8 +62,8 @@ const App = () => {
       setUsername('')
       setPassword('')
       // Navigate to home page after login
-      navigate('/')
-      window.location.reload()
+      //navigate('/')
+      //window.location.reload()
     } catch (exception) {
       setMessage('wrong credentials')
       setTimeout(() => {
@@ -81,8 +77,8 @@ const App = () => {
     window.localStorage.removeItem('loggedExerciseAppUser')
     setUser(null)
     // Navigate to home login after logout
-    navigate('/')
-    window.location.reload()
+    //navigate('/')
+    //window.location.reload()
     setMessage(`${user.username} logged out`)
     setTimeout(() => {
       setMessage(null)
@@ -111,33 +107,32 @@ const App = () => {
         {
           user
           ?
-          <>
-            <div className='App w-full h-screen overflow-auto'>
-              <Navigation user={user} logout={handleLogout}/>
-                {/* Container */}
-                <div className='container w-full mx-auto pt-20 h-screen'>
-                  <div className="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
-                    {/*Console Content*/}
-                    <Notification message={message} />
-                    <Routes>
-                      <Route path="/" element={
-                          <Exercises
-                            exercises={exercises}
-                            setExercises={setExercises}
-                            user={user}
-                          />
-                        }
-                      />
-                    </Routes> 
-                    {/* Console Content */}
-                  </div>
+          <div className='App w-full h-screen overflow-auto flex flex-col'>
+            <Navigation user={user} logout={handleLogout}/>
+              {/* Container */}
+              <div className='container w-full xl:max-w-5xl mx-auto pt-20 h-screen flex flex-col'>
+                <div className="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal flex flex-col">
+                  {/*Console Content*/}
+                  <Routes>
+                    <Route path="/" element={
+                        <Exercises
+                          exercises={exercises}
+                          setExercises={setExercises}
+                          user={user}
+                          message={message}
+                        />
+                      }
+                    />
+                  </Routes> 
+                  {/* Console Content */}
                 </div>
-                {/* Container */}
-                <Footer />
-            </div>
-          </>
+              </div>
+              {/* Container */}
+              {/* <Footer /> */}
+          </div>
           :
             <div className='Login'>
+              <Notification message={message} />
               <Routes>
               <Route
                 path="/register"
@@ -167,7 +162,6 @@ const App = () => {
             </div>
         }
         </div>
-
   )
 }
 
