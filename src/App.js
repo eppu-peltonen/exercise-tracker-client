@@ -8,9 +8,8 @@ import {Routes, Route, useNavigate} from 'react-router-dom'
 //Routes
 import Register from './routes/Register'
 import Login from './routes/Login'
-import Exercises from './routes/Exercises'
-import Charts from './routes/Charts'
-import Home from './routes/Home'
+import Exercises from './components/ExerciseList'
+import Charts from './components/Charts'
 
 //Services
 import loginService from './services/login'
@@ -21,6 +20,7 @@ import userService from './services/users'
 import Notification from './components/Notification'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
+import Divider from './components/Divider'
 
 const App = () => {
 
@@ -80,7 +80,7 @@ const App = () => {
     event.preventDefault()
     window.localStorage.removeItem('loggedExerciseAppUser')
     setUser(null)
-    // Navigate to home page after logout
+    // Navigate to home login after logout
     navigate('/')
     window.location.reload()
     setMessage(`${user.username} logged out`)
@@ -97,7 +97,7 @@ const App = () => {
       })
       setUsername('')
       setPassword('')
-      navigate('/login')
+      navigate('/')
     } catch (exception) {
       setMessage("username already registered")
       setTimeout(() => {
@@ -107,146 +107,66 @@ const App = () => {
   }
 
   return (
-    <div className='App h-screen overflow-auto'>
-    <Navigation user={user} logout={handleLogout}/>
-
-    {/* Container */}
-    <div className='container w-full mx-auto pt-20'>
-      <div className="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
-        
+      <div>
         {
           user
           ?
           <>
-            {/*Console Content*/}
-          <div className="flex flex-wrap">
-
-            <Notification message={message} />
-            <Routes>
-            <Route path="/" element={
-                <Exercises
-                  exercises={exercises}
-                  setExercises={setExercises}
-                  user={user}
-                />
-              }
-            />
-            
-          </Routes>
-        </div>
-      {/* Console Content */}
-
-      {/*Divider*/}
-      <hr className="border-b-2 border-gray-600 my-8 mx-4"/> 
-          
-      <div className="flex flex-row flex-wrap flex-grow mt-2">
-              <Charts
-                exercises={exercises}
-                user={user}
-              />
-            <div className="w-full md:w-1/2 p-3">
-                {/*Graph Card*/}
-                <div className="bg-gray-800 border border-gray-700 rounded shadow">
-                    <div className="border-b border-gray-700 p-3">
-                        <h5 className="font-bold uppercase text-gray-500">Graph</h5>
-                    </div>
-                    <div className="p-5">
-                    {/* TÄHÄN CHART */}
-                    </div>
+            <div className='App w-full h-screen overflow-auto'>
+              <Navigation user={user} logout={handleLogout}/>
+                {/* Container */}
+                <div className='container w-full mx-auto pt-20 h-screen'>
+                  <div className="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
+                    {/*Console Content*/}
+                    <Notification message={message} />
+                    <Routes>
+                      <Route path="/" element={
+                          <Exercises
+                            exercises={exercises}
+                            setExercises={setExercises}
+                            user={user}
+                          />
+                        }
+                      />
+                    </Routes> 
+                    {/* Console Content */}
+                  </div>
                 </div>
-                {/*/Graph Card*/}
+                {/* Container */}
+                <Footer />
             </div>
-
-            <div className="w-full md:w-1/2 p-3">
-                {/*Graph Card*/}
-                <div className="bg-gray-800 border border-gray-700 rounded shadow">
-                    <div className="border-b border-gray-700 p-3">
-                        <h5 className="font-bold uppercase text-gray-500">Graph</h5>
-                    </div>
-                    <div className="p-5">
-                      {/* TÄHÄN CHART */}
-                    </div>
-                </div>
-                {/*/Graph Card*/}
-            </div>
-
-            <div className="w-full md:w-1/2 xl:w-1/3 p-3">
-                {/*Graph Card*/}
-                <div className="bg-gray-800 border border-gray-700 rounded shadow">
-                    <div className="border-b border-gray-700 p-3">
-                        <h5 className="font-bold uppercase text-gray-500">Graph</h5>
-                    </div>
-                    <div className="p-5">
-                      {/* TÄHÄN CHART */}
-                    </div>
-                </div>
-                {/*/Graph Card*/}
-            </div>
-
-            <div className="w-full md:w-1/2 xl:w-1/3 p-3">
-                {/*Graph Card*/}
-                <div className="bg-gray-800 border border-gray-700 rounded shadow">
-                    <div className="border-b border-gray-700 p-3">
-                        <h5 className="font-bold uppercase text-gray-500">Graph</h5>
-                    </div>
-                    <div className="p-5">
-                      {/* TÄHÄN CHART */}
-                    </div>
-                </div>
-                {/*/Graph Card*/}
-            </div>
-
-            <div className="w-full md:w-1/2 xl:w-1/3 p-3">
-                {/*Template Card*/}
-                <div className="bg-gray-800 border border-gray-700 rounded shadow">
-                    <div className="border-b border-gray-700 p-3">
-                        <h5 className="font-bold uppercase text-gray-500">Graph</h5>
-                    </div>
-                    <div className="p-5">
-          
-                    </div>
-                </div>
-                {/*/Template Card*/}
-            </div>
-          </div>
-
           </>
           :
-            <>
-            <Routes>
-            <Route
-              path="/register"
-              element={
-                <Register
-                  handleRegister={handleRegister}
-                  newUser={newUser}
-                  setNewUser={setNewUser}
-                  newPassword={newPassword}
-                  setNewPassword={setNewPassword}
-                />
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <Login
-                  username={username}
-                  setUsername={setUsername}
-                  password={password}
-                  setPassword={setPassword}
-                  handleLogin={handleLogin} 
-                />
-              }
-            />
-            </Routes>
-            </>
+            <div className='Login'>
+              <Routes>
+              <Route
+                path="/register"
+                element={
+                  <Register
+                    handleRegister={handleRegister}
+                    newUser={newUser}
+                    setNewUser={setNewUser}
+                    newPassword={newPassword}
+                    setNewPassword={setNewPassword}
+                  />
+                }
+              />
+              <Route
+                path="/"
+                element={
+                  <Login
+                    username={username}
+                    setUsername={setUsername}
+                    password={password}
+                    setPassword={setPassword}
+                    handleLogin={handleLogin} 
+                  />
+                }
+              />
+              </Routes>
+            </div>
         }
-
-      </div>
-    </div>
-    {/* Container */}
-    <Footer />
-  </div>
+        </div>
 
   )
 }

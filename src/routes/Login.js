@@ -9,34 +9,43 @@ const Login = ({
 }) => {
 
   return (
-    <div className="">
-      <div className="w-full  max-w-xs">
-        <form onSubmit={handleLogin} className="bg-gray-900 shadow-md rounded p-8 mb-4">
-          <h2 className= "text-3xl md:text-4xl mb-3 text-green-400 font-normal">Login</h2>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-              Username
-            </label>
-            <input className="bg-gray-900 shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" value={username} onChange={({target}) => setUsername(target.value)} placeholder="Username"/>
-          </div>
-          <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-              Password
-            </label>
-            <input className="bg-gray-900 shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" value={password} onChange={({target}) => setPassword(target.value)} placeholder="******************"/>
-          </div>
-          <div className="flex items-center justify-between">
-            <button className="bg-green-400 hover:bg-green-700 text-gray-100 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-              Sign In
-            </button>
-            <Link to="/register" className="inline-block align-baseline font-bold text-sm text-green-400 hover:text-green-800">
-              <p>Don't have an account?</p>
-              <p>Sign up!</p>
-            </Link>
-          </div>
-        </form>
+
+    <div className="min-h-screen pt-12 md:pt-20 pb-6 px-2 md:px-0">
+      <header className="max-w-lg mx-auto">
+        <div>
+          <h1 className="text-5xl font-bold text-white text-center">Exercise Tracker</h1>
+        </div>
+      </header>
+
+      <main className="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
+        <section>
+            <h3 className="font-bold text-2xl text-gray-700">Welcome!</h3>
+            <p className="text-gray-600 pt-2">Sign in to your account.</p>
+        </section>
+
+        <section className="mt-10">
+          <form className="flex flex-col" onSubmit={handleLogin}>
+            <div className="mb-6 pt-3 rounded bg-gray-200">
+              <label className="block text-gray-700 text-sm font-bold mb-2 ml-3" htmlFor="username">Username</label>
+              <input type="text" id="username" value={username} onChange={({target}) => setUsername(target.value)} className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-green-400 transition duration-500 px-3 pb-3" />
+            </div>
+            <div className="mb-6 pt-3 rounded bg-gray-200">
+              <label className="block text-gray-700 text-sm font-bold mb-2 ml-3" htmlFor="password">Password</label>
+              <input type="password" id="password" value={password} onChange={({target}) => setPassword(target.value)} className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-green-400 transition duration-500 px-3 pb-3" />
+            </div>
+            <button className="bg-green-400 hover:bg-green-500 text-white font-bold py-2 mt-4 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">Sign In</button>
+          </form>
+        </section>
+      </main>
+
+      <div className="max-w-lg mx-auto text-center mt-12 mb-6">
+        <p className="text-white text-lg">Don't have an account? <Link to="/register" className="font-bold hover:underline">Sign up</Link>.</p>
       </div>
     </div>
+
+
+
+    
   )
 }
 
