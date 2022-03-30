@@ -6,13 +6,13 @@ const Charts = ({exercises, user}) => {
   const userExercises = exercises.filter(exercise => exercise.user_id === user.id)
 
   return (
-    <div className='mt-10'>
+    <div className=''>
       {
         userExercises.length === 0
         ?
-          <div className="text-xl">Add some exercises to see your data.</div>
+          <div className="">Add some exercises to see your data.</div>
         :
-        <div className="flex justify-center">
+        <div className="">
         <ResponsiveContainer width="50%" height={400}>
         <AreaChart
           width={500}

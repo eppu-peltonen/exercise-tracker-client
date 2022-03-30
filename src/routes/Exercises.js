@@ -12,8 +12,9 @@ const Exercises = ({exercises, setExercises, user}) => {
 
   const exerciseFormRef = useRef()
 
-  // Get users exercises
+  // Get users exercises and sort by date
   const userExercises = exercises.filter(exercise => exercise.user_id === user.id)
+  const sortedUserExercises = userExercises.sort(compare)
 
   const addExercise = (exerciseObject) => {
     exerciseFormRef.current.toggleVisibility()
@@ -24,28 +25,47 @@ const Exercises = ({exercises, setExercises, user}) => {
       })
   }
 
+  function compare(a, b) {
+    if ( a.start_time < b.start_time ){
+      return -1;
+    }
+    if ( a.start_time > b.start_time ){
+      return 1;
+    }
+    return 0;
+  }
+  
   return (
-    <div className='border-2 border-red-500 flex flex-col justify-center'>
-      <h1 className="text-4xl font-semibold text-green-600 mb-10">Your exercises</h1>
+    <div className='w-full flex flex-col justify-center'>
       <Togglable buttonLabel='Add new exercise' ref={exerciseFormRef}>
         <ExerciseForm createExercise={addExercise}/>
       </Togglable>
+
+      <div className="bg-gray-800 border border-gray-700 rounded shadow mt-10">
+        <div className="border-b border-gray-700 p-3">
+          <h5 className="font-bold uppercase text-gray-600">Exercises</h5>
+        </div>
+        <div className="p-5">
+          {
+            userExercises.length === 0
+            ?
+              <div className="">Start by adding a new exercise.</div>
+            :
+              sortedUserExercises.map(exercise => (
+                <div key={exercise.id} className=" text-gray-400 border-b border-gray-400 my-2 grid grid-cols-5">
+                  <div>{exercise.sport}</div>
+                  <div>{exercise.duration}</div>
+                  <div>{exercise.distance} km</div>
+                  <div>{exercise.avg_hr} BPM</div>
+                  <div>{(exercise.start_time.toLocaleString('fi-FI')).substring(0,10)}</div>
+                </div>
+              ))
+          }
+        </div>
+      </div>
+
       <div className='mt-10'>
-        {
-          userExercises.length === 0
-          ?
-            <div className="text-xl">Start by adding a new exercise.</div>
-          :
-            userExercises.map(exercise => (
-              <div key={exercise.id} className="border-b border-gray-500 pb-4">
-                <div>{exercise.sport}</div>
-                <div>{exercise.duration}</div>
-                <div>{exercise.distance} km</div>
-                <div>{exercise.avg_hr} BPM</div>
-                <div>{(exercise.start_time.toLocaleString('fi-FI'))}</div>
-              </div>
-            ))
-        }
+       
       </div>
     </div>
   )
