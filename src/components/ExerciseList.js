@@ -7,9 +7,6 @@ import "react-datepicker/dist/react-datepicker.css";
 // CSS Modules, react-datepicker-cssmodules.css
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
-import Divider from './Divider';
-import Charts from './Charts';
-
 import compare from '../utils/compareStartTime'
 
 
