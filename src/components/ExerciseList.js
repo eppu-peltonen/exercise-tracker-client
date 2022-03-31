@@ -30,29 +30,29 @@ const Exercises = ({exercises, setExercises, user}) => {
       })
   }
 
-  
-  
   return (
     <>
       <Togglable buttonLabel='Add new exercise' ref={exerciseFormRef}>
         <ExerciseForm createExercise={addExercise}/>
       </Togglable>
 
+      <Divider />
+
       {
         userExercises.length === 0
         ?
-          <div className="text-xl p-3 text-gray-300 bg-gray-800 border border-gray-700 rounded shadow mt-10 flex justify-center">
+          <div className="text-xl p-3 text-gray-300 bg-gray-700 border border-gray-500 rounded shadow mt-10 flex justify-center">
             <span>Start by adding some exercises.</span>
           </div>
         :
-        <div className="bg-gray-800 border border-gray-700 rounded shadow mt-10">
-        <div className="border-b border-gray-700 p-3">
-          <h5 className="font-bold uppercase text-gray-600">Exercises</h5>
+        <div className="bg-gray-700 border-2 border-gray-500 rounded shadow mt-10">
+        <div className="border-b-2 border-gray-500 p-3">
+          <h5 className="font-bold uppercase text-gray-300">Exercises</h5>
         </div>
         <div className="p-5">
           {
             sortedUserExercises.map(exercise => (
-              <div key={exercise.id} className=" text-gray-400 border-b border-gray-400 my-2 grid grid-cols-1 md:grid-cols-5">
+              <div key={exercise.id} className=" text-gray-300 border-b border-gray-400 my-2 grid grid-cols-1 md:grid-cols-5">
                 <div>{exercise.sport}</div>
                 <div>{exercise.duration}</div>
                 <div>{exercise.distance} km</div>

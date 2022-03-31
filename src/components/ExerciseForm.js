@@ -5,11 +5,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 
-
 const listOfSports = [
   "Running",
   "Walking",
-  "Cycling"
+  "Cycling",
+  "Skiing"
 ]
 
 const SportList = ({sport, setSport}) => {
@@ -20,8 +20,8 @@ const SportList = ({sport, setSport}) => {
             onChange={(e) => setSport(e.target.value)}
             value={sport}
             className="form-select appearance-none block w-full px-3 py-1.5 text-base font-medium
-            bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0
-            focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
+            bg-gray-100 text-gray-700 bg-clip-padding bg-no-repeat border border-solid border-gray-500 rounded transition ease-in-out m-0
+            focus:text-gray-600 focus:outline-none"
             aria-label="Default select example"
           >
             <option>Select sport</option>
@@ -35,7 +35,7 @@ const SportList = ({sport, setSport}) => {
 }
 
 const ExampleCustomInput = React.forwardRef(({ value, onClick }, ref) => (
-  <button type="button" className="bg-green-400 hover:bg-green-500 text-gray-100 font-bold px-2 py-1 rounded focus:outline-none focus:shadow-outline" onClick={onClick} ref={ref}>
+  <button type="button" className="bg-green-500 hover:bg-green-600 text-gray-100 font-bold px-2 py-1 rounded focus:outline-none focus:shadow-outline" onClick={onClick} ref={ref}>
     {value}
   </button>
 ));
@@ -72,17 +72,17 @@ const ExerciseForm = ({createExercise}) => {
   }
 
   return (
-    <div className="">
-      <form onSubmit={addExercise} className="bg-gray-900 shadow-md rounded p-8 mb-4">
+    <div className="md:w-1/2">
+      <form onSubmit={addExercise} className="bg-gray-700 border-2 border-gray-500 shadow-md rounded p-8 mb-4">
         <h2 className= "text-3xl md:text-4xl mb-3 text-green-400 font-normal">Add new exercise</h2>
         <div className="mb-6">
-          <label className="block text-gray-100 text-base font-bold mb-2" htmlFor="sport">
+          <label className="block text-gray-300 text-base font-bold mb-2" htmlFor="sport">
             Sport
           </label>
           <SportList sport={sport} setSport={setSport} />
         </div>
         <div className='mb-6'>
-          <label className="block text-gray-100 text-base font-bold mb-2" htmlFor="date">
+          <label className="block text-gray-300 text-base font-bold mb-2" htmlFor="date">
             Start date and time
           </label>
           <DatePicker
@@ -95,14 +95,14 @@ const ExerciseForm = ({createExercise}) => {
           />
         </div>
         <div className="mb-6">
-          <label className="block text-gray-100 text-base font-bold mb-2" htmlFor="duration">
+          <label className="block text-gray-300 text-base font-bold mb-2" htmlFor="duration">
             Duration
           </label>
             <div className='flex flex-row'>
               <div>
-                <label className='block text-gray-100 text-sm font-bold mb-2' htmlFor='hours'>hours</label>
+                <label className='block text-gray-300 text-sm font-bold mb-2' htmlFor='hours'>hours</label>
                 <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-100 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                   id='hours'
                   type='text'
                   min={0}
@@ -112,9 +112,9 @@ const ExerciseForm = ({createExercise}) => {
                 />
               </div>
               <div>
-                <label className='block text-gray-100 text-sm font-bold mb-2' htmlFor='minutes'>minutes</label>
+                <label className='block text-gray-300 text-sm font-bold mb-2' htmlFor='minutes'>minutes</label>
                   <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-100 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                     id='minutes'
                     type='text'
                     min={0}
@@ -125,9 +125,9 @@ const ExerciseForm = ({createExercise}) => {
                   />
               </div>
               <div>
-                <label className='block text-gray-100 text-sm font-bold mb-2' htmlFor='seconds'>seconds</label>
+                <label className='block text-gray-300 text-sm font-bold mb-2' htmlFor='seconds'>seconds</label>
                   <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-100 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                     id='seconds'
                     type='text'
                     min={0}
@@ -140,10 +140,10 @@ const ExerciseForm = ({createExercise}) => {
             </div>
         </div>
         <div className="mb-6">
-          <label className="block text-gray-100 text-base font-bold mb-2" htmlFor="distance">
+          <label className="block text-gray-300 text-base font-bold mb-2" htmlFor="distance">
             Distance (km)
           </label>
-          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+          <input className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-100 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             id="distance"
             type="number"
             step="0.1"
@@ -154,10 +154,10 @@ const ExerciseForm = ({createExercise}) => {
           />
         </div>
         <div className="mb-6">
-          <label className="block text-gray-100 text-base font-bold mb-2" htmlFor="avg_hr">
+          <label className="block text-gray-300 text-base font-bold mb-2" htmlFor="avg_hr">
             Average heart rate
           </label>
-          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+          <input className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-100 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             id="avg_hr"
             type="number"
             min={0}
@@ -167,7 +167,7 @@ const ExerciseForm = ({createExercise}) => {
           />
         </div>
         <div className="flex items-center justify-between">
-          <button className="bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+          <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
             Save exercise
           </button> 
         </div>
