@@ -36,8 +36,6 @@ const Exercises = ({exercises, setExercises, user}) => {
         <ExerciseForm createExercise={addExercise}/>
       </Togglable>
 
-      <Divider />
-
       {
         userExercises.length === 0
         ?

@@ -1,4 +1,4 @@
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, Legend} from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend} from 'recharts';
 
 import compare from '../utils/compareStartTime'
 
@@ -117,6 +117,7 @@ const Charts = ({exercises, user}) => {
                 <XAxis dataKey="start_time" />
                 <YAxis />
                 <Tooltip />
+                <Legend />
                 <Area type="monotone" dataKey="avg_hr" stroke="#4ade80" fill="#4ade80" />
               </AreaChart>
             </ResponsiveContainer>

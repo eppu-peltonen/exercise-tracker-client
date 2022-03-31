@@ -150,7 +150,7 @@ const ExerciseForm = ({createExercise}) => {
             min={0}
             value={distance}
             onChange={(event) => {setDistance(event.target.value)}}
-            placeholder="distance"
+            placeholder="0.0"
           />
         </div>
         <div className="mb-6">
@@ -163,7 +163,7 @@ const ExerciseForm = ({createExercise}) => {
             min={0}
             value={avgHR}
             onChange={(event) => {setAvgHR(event.target.value)}}
-            placeholder="avg_hr"
+            placeholder="0"
           />
         </div>
         <div className="flex items-center justify-between">
