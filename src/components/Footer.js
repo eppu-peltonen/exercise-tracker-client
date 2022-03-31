@@ -1,10 +1,8 @@
 const Footer = () => {
   return (
-    <footer className="bg-gray-700 mt-auto">
-      <div className="px-4 py-3 mx-auto">
-          <div className="font-semibold text-green-600 py-2">
-            &copy;2022 Eppu Peltonen
-          </div>
+    <footer className="bg-gray-800 border-t border-gray-400 shadow">
+      <div className="font-semibold text-green-400 py-2">
+        &copy;2022 Eppu Peltonen
       </div>
     </footer>
   )
