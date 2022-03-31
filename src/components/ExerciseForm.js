@@ -146,6 +146,7 @@ const ExerciseForm = ({createExercise}) => {
           <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             id="distance"
             type="number"
+            step="0.1"
             min={0}
             value={distance}
             onChange={(event) => {setDistance(event.target.value)}}

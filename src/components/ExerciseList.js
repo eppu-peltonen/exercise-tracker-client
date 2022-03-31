@@ -10,6 +10,8 @@ import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import Divider from './Divider';
 import Charts from './Charts';
 
+import compare from '../utils/compareStartTime'
+
 
 const Exercises = ({exercises, setExercises, user}) => {
 
@@ -28,15 +30,7 @@ const Exercises = ({exercises, setExercises, user}) => {
       })
   }
 
-  function compare(a, b) {
-    if ( a.start_time < b.start_time ){
-      return -1;
-    }
-    if ( a.start_time > b.start_time ){
-      return 1;
-    }
-    return 0;
-  }
+  
   
   return (
     <>
@@ -48,7 +42,7 @@ const Exercises = ({exercises, setExercises, user}) => {
         userExercises.length === 0
         ?
           <div className="text-xl p-3 text-gray-300 bg-gray-800 border border-gray-700 rounded shadow mt-10 flex justify-center">
-            <span>Start by adding a new exercise.</span>
+            <span>Start by adding some exercises.</span>
           </div>
         :
         <div className="bg-gray-800 border border-gray-700 rounded shadow mt-10">
