@@ -54,7 +54,7 @@ const ExerciseForm = ({createExercise}) => {
     event.preventDefault()
 
     const duration = hours + ':' + minutes + ':' + seconds
-    
+
     createExercise({
       sport: sport,
       start_time: startDate,
@@ -150,7 +150,6 @@ const ExerciseForm = ({createExercise}) => {
             min={0}
             value={distance}
             onChange={(event) => {setDistance(event.target.value)}}
-            placeholder="0.0"
           />
         </div>
         <div className="mb-6">
@@ -163,7 +162,6 @@ const ExerciseForm = ({createExercise}) => {
             min={0}
             value={avgHR}
             onChange={(event) => {setAvgHR(event.target.value)}}
-            placeholder="0"
           />
         </div>
         <div className="flex items-center justify-between">
