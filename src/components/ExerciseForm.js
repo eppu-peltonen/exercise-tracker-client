@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 
-const listOfSports = [
+export const listOfSports = [
   "Running",
   "Walking",
   "Cycling",
