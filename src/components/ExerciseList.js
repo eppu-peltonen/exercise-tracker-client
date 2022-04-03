@@ -25,6 +25,7 @@ const Exercises = ({exercises, setExercises, user}) => {
       .then(returnedExercise => {
         setExercises(exercises.concat(returnedExercise))
       })
+      .catch(error => console.log(error))
   }
 
   return (
