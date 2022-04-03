@@ -37,10 +37,12 @@ const Charts = ({exercises, user}) => {
     exercise.distance > acc ? exercise.distance : acc
   ), 0)
 
+  // Add avg speed for all exercises (km/h)
   graphData.map(exercise => (
     exercise.avgSpeed = exercise.distance / exercise.durationHours
   ))
-
+  
+  // Find top avg speed from all exercises
   const topAvgSpeed = graphData.reduce((acc, exercise) => Math.max(acc, exercise.avgSpeed), 0)
 
   // How many exercises for each sport
@@ -98,7 +100,7 @@ const Charts = ({exercises, user}) => {
           {/*/Graph Card*/}
       </div>
 
-      <div className="w-full md:w-1/2 xl:w-1/3 p-3">
+      <div className="w-full md:w-1/2 xl:w-1/4 p-3">
           {/*Graph Card*/}
           <div className="bg-gray-700 border-2 border-gray-500 rounded shadow">
               <div className="border-b-2 border-gray-500 p-3">
@@ -111,7 +113,7 @@ const Charts = ({exercises, user}) => {
           {/*/Graph Card*/}
       </div>
 
-      <div className="w-full md:w-1/2 xl:w-1/3 p-3">
+      <div className="w-full md:w-1/2 xl:w-1/4 p-3">
           {/*Graph Card*/}
           <div className="bg-gray-700 border-2 border-gray-500 rounded shadow">
               <div className="border-b-2 border-gray-500 p-3">
@@ -124,7 +126,7 @@ const Charts = ({exercises, user}) => {
           {/*/Graph Card*/}
       </div>
 
-      <div className="w-full md:w-1/2 xl:w-1/3 p-3">
+      <div className="w-full md:w-1/2 xl:w-1/4 p-3">
           {/*Graph Card*/}
           <div className="bg-gray-700 border-2 border-gray-500 rounded shadow">
               <div className="border-b-2 border-gray-500 p-3">
@@ -137,7 +139,7 @@ const Charts = ({exercises, user}) => {
           {/*/Graph Card*/}
       </div>
 
-      <div className="w-full md:w-1/2 xl:w-1/3 p-3">
+      <div className="w-full md:w-1/2 xl:w-1/4 p-3">
           {/*Graph Card*/}
           <div className="bg-gray-700 border-2 border-gray-500 rounded shadow">
               <div className="border-b-2 border-gray-500 p-3">
@@ -150,7 +152,7 @@ const Charts = ({exercises, user}) => {
           {/*/Graph Card*/}
       </div>
 
-      <div className="w-full md:w-1/2 xl:w-1/3 p-3">
+      <div className="w-full md:w-1/2 xl:w-1/4 p-3">
           {/*Graph Card*/}
           <div className="bg-gray-700 border-2 border-gray-500 rounded shadow">
               <div className="border-b-2 border-gray-500 p-3">
