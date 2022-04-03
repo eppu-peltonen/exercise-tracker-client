@@ -4,6 +4,28 @@ Live: <https://evening-sierra-51700.herokuapp.com/>
 
 Client to use with the exercise tracker server.
 
+## Client screenshots
+
+Login:
+
+![login](./screenshots/tracker-login.png)
+
+Add exercise -form:
+
+![add new exercise](./screenshots/tracker-1.png)
+
+Exercise list:
+
+![exercise list](./screenshots/tracker-2.png)
+
+Exercise data processing:
+
+![exercise data](./screenshots/tracker-3.png)
+
+Exercise graphs:
+
+![exercise graphs](./screenshots/tracker-4.png)
+
 ## Installation and running
 
 1. Clone repo.
