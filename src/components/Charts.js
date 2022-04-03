@@ -13,11 +13,9 @@ const Charts = ({exercises, user}) => {
 
   // Get hours from duration to use for calculation
   const graphData = sortedUserExercises
-
   graphData.map(exercise => (
     exercise.durationHours = parseFloat(exercise.duration.substring(0,2)) + parseFloat(exercise.duration.substring(3,5)/60) + parseFloat(exercise.duration.substring(6,8)/3600)
   ))
-
   graphData.map(exercise => (
     exercise.distance = parseFloat(exercise.distance)
   ))
@@ -28,29 +26,24 @@ const Charts = ({exercises, user}) => {
   // Returns time object that contains hours minutes and seconds
   const totalTimeObject = dayjs.duration(totalTimeHours, 'h')
 
-  // Get average heart rate
+  // Average of all average heart rates
   const avgHeartRate = graphData.reduce((acc, exercise) => acc + exercise.avg_hr, 0) / graphData.length
 
-  // Get highest average heart rate
   const highestAvgHeartRate = graphData.reduce((acc, exercise) => Math.max(acc, exercise.avg_hr), 0)
 
-  // Get total distance
   const totalDistance = graphData.reduce((acc, exercise) => acc + exercise.distance, 0)
 
-  // Get top distance
   const topDistance = graphData.reduce((acc, exercise) => (
     exercise.distance > acc ? exercise.distance : acc
   ), 0)
 
-  // Get average speed for each exercise
   graphData.map(exercise => (
     exercise.avgSpeed = exercise.distance / exercise.durationHours
   ))
 
-  // get top avg speed
   const topAvgSpeed = graphData.reduce((acc, exercise) => Math.max(acc, exercise.avgSpeed), 0)
 
-  // Get sport amount of different sports
+  // How many exercises for each sport
   const sportAmount = graphData.reduce((acc, exercise) => {
     if (exercise.sport in acc) {
       acc[exercise.sport] += 1
@@ -60,9 +53,7 @@ const Charts = ({exercises, user}) => {
     return acc
   }, {})
 
-  console.log(sportAmount)
-
-  // Map sportAmount to array
+  // Map sportAmount to array for pie chart data
   const sportDistribution = Object.keys(sportAmount).map(sport => {
     return {
       name: sport,
@@ -70,9 +61,6 @@ const Charts = ({exercises, user}) => {
     }
   })
 
-  console.log(sportDistribution)
-
-  // Get sport that has the most amount of exercises
   const topSport = Object.keys(sportAmount).reduce((a, b) => sportAmount[a] > sportAmount[b] ? a : b, 0)
 
   const pieChartColors = [

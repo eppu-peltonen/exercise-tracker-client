@@ -64,11 +64,8 @@ const App = () => {
       setUser(user)
       setUsername('')
       setPassword('')
-      // Navigate to home page after login
-      //navigate('/')
-      //window.location.reload()
     } catch (exception) {
-      setMessage('wrong credentials')
+      setMessage('Unknow username or password')
       setTimeout(() => {
         setMessage(null)
       }, 5000)
@@ -79,9 +76,6 @@ const App = () => {
     event.preventDefault()
     window.localStorage.removeItem('loggedExerciseAppUser')
     setUser(null)
-    // Navigate to home login after logout
-    //navigate('/')
-    //window.location.reload()
     setMessage(`${user.username} logged out`)
     setTimeout(() => {
       setMessage(null)
@@ -90,19 +84,17 @@ const App = () => {
 
   const handleRegister = async (event) => {
     event.preventDefault()
-    try {
-      await userService.addUser({
-        newUser, newPassword
-      })
-      setUsername('')
-      setPassword('')
-      navigate('/')
-    } catch (exception) {
-      setMessage("username already registered")
-      setTimeout(() => {
-        setMessage(null)
-      }, 5000)
-    }
+
+    const result = await userService.addUser({
+      newUser, newPassword
+    })
+    setMessage(result)
+    setTimeout(() => {
+      setMessage(null)
+    }, 5000)
+    setNewUser('')
+    setNewPassword('')
+    navigate('/')
   }
 
   return (
@@ -135,7 +127,7 @@ const App = () => {
           </div>
           :
             <div className='Login'>
-              <Notification message={message} />
+              
               <Routes>
               <Route
                 path="/register"
@@ -157,7 +149,8 @@ const App = () => {
                     setUsername={setUsername}
                     password={password}
                     setPassword={setPassword}
-                    handleLogin={handleLogin} 
+                    handleLogin={handleLogin}
+                    message={message}
                   />
                 }
               />

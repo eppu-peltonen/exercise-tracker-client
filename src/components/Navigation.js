@@ -1,6 +1,5 @@
 import React from 'react'
 import {FiLogOut} from 'react-icons/fi'
-import {Link} from "react-router-dom"
 
 const Navigation = ({user, logout}) => {
 
@@ -9,9 +8,9 @@ const Navigation = ({user, logout}) => {
   <nav id="header" className="bg-gray-700 fixed w-full z-10 top-0 pb-3 shadow">
 		<div className="w-full xl:max-w-5xl container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3">
       <div className="w-1/2 pl-2 md:pl-0">
-        <Link to='/' className="text-green-400 text-base md:text-2xl no-underline hover:no-underline font-bold"> 
+        <div className="text-green-400 text-base md:text-2xl no-underline hover:no-underline font-bold"> 
           Exercise Tracker
-        </Link>
+        </div>
       </div>
 			<div className="w-1/2 pr-0">
 				<div className="flex relative float-right">

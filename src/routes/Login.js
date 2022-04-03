@@ -1,11 +1,13 @@
 import {Link} from "react-router-dom"
+import Notification from "../components/Notification"
 
 const Login = ({
   username,
   setUsername,
   password,
   setPassword,
-  handleLogin
+  handleLogin,
+  message
 }) => {
 
   return (
@@ -16,6 +18,10 @@ const Login = ({
           <h1 className="text-5xl font-bold text-white text-center">Exercise Tracker</h1>
         </div>
       </header>
+
+      <div className="max-w-lg mx-auto my-10 font-bold text-xl text-white text-center">
+        <Notification  message={message} />
+      </div>
 
       <main className="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
         <section>

@@ -29,7 +29,7 @@ const Exercises = ({exercises, setExercises, user}) => {
   }
 
   const deleteExercise = (id) => {
-    var confirmDelete = window.confirm('Are you sure you want to delete exercise?')
+    var confirmDelete = window.confirm('Are you sure you want to delete this exercise?')
     if (confirmDelete) {
       exerciseService
         .deleteExercise(id)
@@ -66,9 +66,11 @@ const Exercises = ({exercises, setExercises, user}) => {
                 <div>{exercise.distance} km</div>
                 <div>{exercise.avg_hr} BPM</div>
                 <div>{(exercise.start_time.toLocaleString('fi-FI')).substring(0,10)}</div>
-                <button className="text-red-500 font-bold py-2 px-4 rounded" onClick={() => deleteExercise(exercise.id)}>
-                  Delete
-                </button>
+                <div>
+                  <button className="text-red-500 font-bold py-2 px-4 rounded" onClick={() => deleteExercise(exercise.id)}>
+                    Delete
+                  </button>
+                </div>
               </div>
             ))
           }
