@@ -8,12 +8,12 @@ dayjs.extend(duration)
 
 const Charts = ({exercises, user}) => {
 
-  // Get users exercises and sort by date
-  const userExercises = exercises.filter(exercise => exercise.user_id === user.id)
-  const sortedUserExercises = userExercises.sort(compare)
+  // sort users exercises
+  const sortedUserExercises = exercises.sort(compare)
 
   // Get hours from duration to use for calculation
   const graphData = sortedUserExercises
+
   graphData.map(exercise => (
     exercise.durationHours = parseFloat(exercise.duration.substring(0,2)) + parseFloat(exercise.duration.substring(3,5)/60) + parseFloat(exercise.duration.substring(6,8)/3600)
   ))

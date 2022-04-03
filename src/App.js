@@ -39,14 +39,17 @@ const App = () => {
     }
   }, [])
 
-  // Get users exercises at the beginning
+  // Get users exercises
   useEffect(() => {
-    exerciseService
-      .getAll()
-      .then(initialExercises => {
-        setExercises(initialExercises)
-      })
-  }, [])
+    if (user) {
+      exerciseService
+        .getById(user)
+        .then(returnedExercises => {
+          setExercises(returnedExercises)
+        }) 
+        .catch(error => console.log(error))
+    }
+  }, [user])
 
   let navigate = useNavigate()
 

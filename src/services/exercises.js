@@ -13,7 +13,6 @@ const getAll = () => {
 }
 
 const getById = (user) => {
-  console.log(user)
   const id = user.id
   const req = axios.get(`${baseUrl}/${id}`)
   return req.then(res => res.data)

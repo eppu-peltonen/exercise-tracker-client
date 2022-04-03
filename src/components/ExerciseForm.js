@@ -50,7 +50,7 @@ const ExerciseForm = ({createExercise}) => {
   const [distance, setDistance] = useState(0)
   const [avgHR, setAvgHR] = useState(0)
 
-  const addExercise = (event) => {
+  const createExerciseObject = (event) => {
     event.preventDefault()
 
     const duration = hours + ':' + minutes + ':' + seconds
@@ -73,7 +73,7 @@ const ExerciseForm = ({createExercise}) => {
 
   return (
     <div className="md:w-1/2">
-      <form onSubmit={addExercise} className="bg-gray-700 border-2 border-gray-500 shadow-md rounded p-8 mb-4">
+      <form onSubmit={createExerciseObject} className="bg-gray-700 border-2 border-gray-500 shadow-md rounded p-8 mb-4">
         <h2 className= "text-3xl md:text-4xl mb-3 text-green-400 font-normal">Add new exercise</h2>
         <div className="mb-6">
           <label className="block text-gray-300 text-base font-bold mb-2" htmlFor="sport">
