@@ -28,6 +28,18 @@ const Exercises = ({exercises, setExercises, user}) => {
       .catch(error => console.log(error))
   }
 
+  const deleteExercise = (id) => {
+    var confirmDelete = window.confirm('Are you sure you want to delete exercise?')
+    if (confirmDelete) {
+      exerciseService
+        .deleteExercise(id)
+        .then(() => {
+          setExercises(exercises.filter(exercise => exercise.id !== id))
+        })
+        .catch(error => console.log(error))
+    }
+  }
+
   return (
     <>
       <Togglable buttonLabel='Add new exercise' ref={exerciseFormRef}>
@@ -48,12 +60,15 @@ const Exercises = ({exercises, setExercises, user}) => {
         <div className="p-5">
           {
             sortedUserExercises.map(exercise => (
-              <div key={exercise.id} className=" text-gray-300 border-b border-gray-400 my-2 grid grid-cols-1 md:grid-cols-5">
+              <div key={exercise.id} className=" text-gray-300 border-b border-gray-400 my-2 grid grid-cols-1 md:grid-cols-6">
                 <div>{exercise.sport}</div>
                 <div>{exercise.duration}</div>
                 <div>{exercise.distance} km</div>
                 <div>{exercise.avg_hr} BPM</div>
                 <div>{(exercise.start_time.toLocaleString('fi-FI')).substring(0,10)}</div>
+                <button className="text-red-500 font-bold py-2 px-4 rounded" onClick={() => deleteExercise(exercise.id)}>
+                  Delete
+                </button>
               </div>
             ))
           }

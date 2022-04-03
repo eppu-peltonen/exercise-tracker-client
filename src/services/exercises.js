@@ -26,11 +26,20 @@ const create = async (newObject) => {
   return res.data
 }
 
+const deleteExercise = async (id) => {
+  const config = {
+    headers: {Authorization: token},
+  }
+  const res = await axios.delete(`${baseUrl}/${id}`, config)
+  return res.data
+}
+
 const exportObject = {
   setToken,
   getAll,
   getById,
   create,
+  deleteExercise,
 }
 
 export default exportObject
