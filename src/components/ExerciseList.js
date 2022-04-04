@@ -18,14 +18,10 @@ const Exercises = ({exercises, setExercises, user}) => {
   const userExercises = exercises.filter(exercise => exercise.user_id === user.id)
   const sortedUserExercises = userExercises.sort(compare)
 
-  const addExercise = (exerciseObject) => {
+  const addExercise = async (exerciseObject) => {
     exerciseFormRef.current.toggleVisibility()
-    exerciseService
-      .create(exerciseObject)
-      .then(returnedExercise => {
-        setExercises(exercises.concat(returnedExercise))
-      })
-      .catch(error => console.log(error))
+    await exerciseService.create(exerciseObject)
+    window.location.reload()
   }
 
   const deleteExercise = (id) => {

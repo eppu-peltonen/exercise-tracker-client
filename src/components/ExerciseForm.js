@@ -4,8 +4,8 @@ import "react-datepicker/dist/react-datepicker.css";
 // CSS Modules, react-datepicker-cssmodules.css
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
-
-export const listOfSports = [
+// List of possible sports to choose from
+const listOfSports = [
   "Running",
   "Walking",
   "Cycling",
@@ -68,12 +68,11 @@ const ExerciseForm = ({createExercise}) => {
     setSeconds(0)
     setDistance(0)
     setAvgHR(0)
-    window.location.reload()
   }
 
   return (
     <div className="md:w-1/2">
-      <form onSubmit={createExerciseObject} className="bg-gray-700 border-2 border-gray-500 shadow-md rounded p-8 mb-4">
+      <form onSubmit={(event) => createExerciseObject(event)} className="bg-gray-700 border-2 border-gray-500 shadow-md rounded p-8 mb-4">
         <h2 className= "text-3xl md:text-4xl mb-3 text-green-400 font-normal">Add new exercise</h2>
         <div className="mb-6">
           <label className="block text-gray-300 text-base font-bold mb-2" htmlFor="sport">
