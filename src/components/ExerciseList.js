@@ -60,7 +60,7 @@ const Exercises = ({exercises, setExercises, user}) => {
                 <div>{exercise.sport}</div>
                 <div>{exercise.duration}</div>
                 <div>{exercise.distance} km</div>
-                <div>{exercise.avg_hr} BPM</div>
+                <div>{exercise.avg_hr} bpm</div>
                 <div>{(exercise.start_time.toLocaleString('fi-FI')).substring(0,10)}</div>
                 <div>
                   <button className="text-red-500 font-bold py-2 px-4 rounded" onClick={() => deleteExercise(exercise.id)}>

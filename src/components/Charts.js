@@ -169,7 +169,7 @@ const Charts = ({exercises, user}) => {
           {/*Graph Card*/}
           <div className="bg-gray-700 border-2 border-gray-500 rounded shadow">
             <div className="border-b-2 border-gray-500 p-3">
-                <h5 className="font-bold uppercase text-gray-300">Heart rate</h5>
+                <h5 className="font-bold uppercase text-gray-300">Heart rate (bpm)</h5>
             </div>
             <div className="p-5">
             <ResponsiveContainer width="100%" height={300}>
@@ -200,7 +200,7 @@ const Charts = ({exercises, user}) => {
           {/*Graph Card*/}
           <div className="bg-gray-700 border-2 border-gray-500 rounded shadow">
               <div className="border-b-2 border-gray-500 p-3">
-                  <h5 className="font-bold uppercase text-gray-300">Duration</h5>
+                  <h5 className="font-bold uppercase text-gray-300">Duration (h)</h5>
               </div>
               <div className="p-5">
                 <ResponsiveContainer width="100%" height={300}>
@@ -231,7 +231,7 @@ const Charts = ({exercises, user}) => {
           {/*Graph Card*/}
           <div className="bg-gray-700 border-2 border-gray-500 rounded shadow">
               <div className="border-b-2 border-gray-500 p-3">
-                  <h5 className="font-bold uppercase text-gray-300">Distance</h5>
+                  <h5 className="font-bold uppercase text-gray-300">Distance (km)</h5>
               </div>
               <div className="p-5">
                 <ResponsiveContainer width="100%" height={300}>

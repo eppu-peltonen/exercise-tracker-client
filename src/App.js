@@ -15,7 +15,6 @@ import exerciseService from './services/exercises'
 import userService from './services/users'
 
 //Components
-import Notification from './components/Notification'
 import Navigation from './components/Navigation'
 
 const App = () => {

@@ -13,15 +13,22 @@ const Navigation = ({user, logout}) => {
         </div>
       </div>
 			<div className="w-1/2 pr-0">
+        
+
 				<div className="flex relative float-right">
 				
 				  <div className="relative text-sm text-gray-100">
             {
               user ?
+                <div className='flex flex-row'>
+                <div className='mx-8 mt-1 font-bold text-green-400'>
+                  {`${user.username} logged in`}
+                </div>
                 <button onClick={logout} className="flex font-medium text-gray-300 text-base hover:text-green-600 cursor-pointer transition-colors duration-300">
                   <FiLogOut size='28' className="w-7 sm:mx-2 mx-4 inline" />
                   <span>Logout</span>
                 </button>
+                </div>
               :
                 <div/>      
             }
