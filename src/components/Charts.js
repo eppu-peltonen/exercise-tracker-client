@@ -8,22 +8,26 @@ dayjs.extend(duration)
 
 const Charts = ({exercises, user}) => {
 
-  // sort users exercises
   const sortedUserExercises = exercises.sort(compare)
 
-  // Get hours from duration to use for calculation
+  // Get hours from duration to use for calculation and add to all exercises
   const graphData = sortedUserExercises
   graphData.map(exercise => (
     exercise.durationHours = parseFloat(exercise.duration.substring(0,2)) + parseFloat(exercise.duration.substring(3,5)/60) + parseFloat(exercise.duration.substring(6,8)/3600)
   ))
+
+  // For some reason distance is returned as a string so parse here
   graphData.map(exercise => (
     exercise.distance = parseFloat(exercise.distance)
   ))
 
-  // Get total exercise time
+  // =======================================
+  // Data processing to display
+  // =======================================
+
   const totalTimeHours = graphData.reduce((acc, exercise) => acc + exercise.durationHours, 0)
 
-  // Returns time object that contains hours minutes and seconds
+  // Returns time object from given hours that contains hours minutes and seconds
   const totalTimeObject = dayjs.duration(totalTimeHours, 'h')
 
   // Average of all average heart rates
@@ -42,7 +46,7 @@ const Charts = ({exercises, user}) => {
     exercise.avgSpeed = exercise.distance / exercise.durationHours
   ))
   
-  // Find top avg speed from all exercises
+  // Top avg speed from all exercises
   const topAvgSpeed = graphData.reduce((acc, exercise) => Math.max(acc, exercise.avgSpeed), 0)
 
   // How many exercises for each sport
@@ -55,7 +59,7 @@ const Charts = ({exercises, user}) => {
     return acc
   }, {})
 
-  // Map sportAmount to array for pie chart data
+  // sportAmount to array for pie chart data
   const sportDistribution = Object.keys(sportAmount).map(sport => {
     return {
       name: sport,
@@ -63,7 +67,8 @@ const Charts = ({exercises, user}) => {
     }
   })
 
-  const topSport = Object.keys(sportAmount).reduce((a, b) => sportAmount[a] > sportAmount[b] ? a : b, 0)
+  // Most exercised sport
+  const topSport = Object.keys(sportAmount).reduce((prev, curr) => sportAmount[prev] > sportAmount[curr] ? prev : curr, 0)
 
   const pieChartColors = [
     '#4ade80',
@@ -75,7 +80,7 @@ const Charts = ({exercises, user}) => {
   return (
     <div className="flex flex-row flex-wrap flex-grow mt-2">
       <div className="w-full md:w-1/2 xl:w-1/4 p-3">
-          {/*Graph Card*/}
+          {/*Data Card*/}
           <div className="bg-gray-700 border-2 border-gray-500 rounded shadow">
               <div className="border-b-2 border-gray-500 p-3">
                   <h5 className="font-bold uppercase text-gray-300">Total time</h5>
@@ -84,11 +89,11 @@ const Charts = ({exercises, user}) => {
                 {(totalTimeObject.$d.days * 24) + (totalTimeObject.$d.hours)} h {totalTimeObject.$d.minutes} min {totalTimeObject.$d.seconds} s
               </div>
           </div>
-          {/*/Graph Card*/}
+          {/*/Data Card*/}
       </div>
 
       <div className="w-full md:w-1/2 xl:w-1/4 p-3">
-          {/*Graph Card*/}
+          {/*Data Card*/}
           <div className="bg-gray-700 border-2 border-gray-500 rounded shadow">
               <div className="border-b-2 border-gray-500 p-3">
                   <h5 className="font-bold uppercase text-gray-300">Total distance</h5>
@@ -97,11 +102,11 @@ const Charts = ({exercises, user}) => {
               {totalDistance} km
               </div>
           </div>
-          {/*/Graph Card*/}
+          {/*/Data Card*/}
       </div>
 
       <div className="w-full md:w-1/2 xl:w-1/4 p-3">
-          {/*Graph Card*/}
+          {/*Data Card*/}
           <div className="bg-gray-700 border-2 border-gray-500 rounded shadow">
               <div className="border-b-2 border-gray-500 p-3">
                   <h5 className="font-bold uppercase text-gray-300">Average heart rate</h5>
@@ -110,11 +115,11 @@ const Charts = ({exercises, user}) => {
                 {avgHeartRate.toFixed(0)} bpm
               </div>
           </div>
-          {/*/Graph Card*/}
+          {/*/Data Card*/}
       </div>
 
       <div className="w-full md:w-1/2 xl:w-1/4 p-3">
-          {/*Graph Card*/}
+          {/*Data Card*/}
           <div className="bg-gray-700 border-2 border-gray-500 rounded shadow">
               <div className="border-b-2 border-gray-500 p-3">
                   <h5 className="font-bold uppercase text-gray-300">Highest heart rate</h5>
@@ -123,11 +128,11 @@ const Charts = ({exercises, user}) => {
                 {highestAvgHeartRate} bpm
               </div>
           </div>
-          {/*/Graph Card*/}
+          {/*/Data Card*/}
       </div>
 
       <div className="w-full md:w-1/2 xl:w-1/4 p-3">
-          {/*Graph Card*/}
+          {/*Data Card*/}
           <div className="bg-gray-700 border-2 border-gray-500 rounded shadow">
               <div className="border-b-2 border-gray-500 p-3">
                   <h5 className="font-bold uppercase text-gray-300">Top speed</h5>
@@ -136,11 +141,11 @@ const Charts = ({exercises, user}) => {
                 {topAvgSpeed.toFixed(2)} km/h
               </div>
           </div>
-          {/*/Graph Card*/}
+          {/*/Data Card*/}
       </div>
 
       <div className="w-full md:w-1/2 xl:w-1/4 p-3">
-          {/*Graph Card*/}
+          {/*Data Card*/}
           <div className="bg-gray-700 border-2 border-gray-500 rounded shadow">
               <div className="border-b-2 border-gray-500 p-3">
                   <h5 className="font-bold uppercase text-gray-300">Top Distance</h5>
@@ -149,11 +154,11 @@ const Charts = ({exercises, user}) => {
                 {topDistance.toFixed(2)} km
               </div>
           </div>
-          {/*/Graph Card*/}
+          {/*/Data Card*/}
       </div>
 
       <div className="w-full md:w-1/2 xl:w-1/4 p-3">
-          {/*Graph Card*/}
+          {/*Data Card*/}
           <div className="bg-gray-700 border-2 border-gray-500 rounded shadow">
               <div className="border-b-2 border-gray-500 p-3">
                   <h5 className="font-bold uppercase text-gray-300">Top sport</h5>
@@ -162,7 +167,7 @@ const Charts = ({exercises, user}) => {
                 {topSport}
               </div>
           </div>
-          {/*/Graph Card*/}
+          {/*Data Card*/}
       </div>
 
       <div className="w-full md:w-1/2 p-3">
@@ -280,8 +285,6 @@ const Charts = ({exercises, user}) => {
           </div>
           {/*/Graph Card*/}
       </div>
-
-      
     </div>
   )
 }

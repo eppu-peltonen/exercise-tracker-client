@@ -1,20 +1,12 @@
 import './App.css'
 import React, {useEffect, useState} from 'react'
-
-// Router
 import {Routes, Route, useNavigate} from 'react-router-dom'
-
-//Routes
 import Register from './routes/Register'
 import Login from './routes/Login'
 import Exercises from './routes/Exercises'
-
-//Services
 import loginService from './services/login'
 import exerciseService from './services/exercises'
 import userService from './services/users'
-
-//Components
 import Navigation from './components/Navigation'
 
 const App = () => {
@@ -24,7 +16,6 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [exercises, setExercises] = useState([])
-
   const [newUser, setNewUser] = useState('')
   const [newPassword, setNewPassword] = useState('')
 
@@ -64,7 +55,7 @@ const App = () => {
       setUsername('')
       setPassword('')
     } catch (exception) {
-      setMessage('Unknow username or password')
+      setMessage('Unknown username or password')
       setTimeout(() => {
         setMessage(null)
       }, 5000)
@@ -106,7 +97,7 @@ const App = () => {
               {/* Container */}
               <div className='container w-full xl:max-w-5xl mx-auto pt-20 h-screen flex flex-col'>
                 <div className="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal flex flex-col">
-                  {/*Console Content*/}
+                  {/*Exercises*/}
                   <Routes>
                     <Route path="/" element={
                         <Exercises
@@ -118,15 +109,13 @@ const App = () => {
                       }
                     />
                   </Routes> 
-                  {/* Console Content */}
+                  {/*Exercises*/}
                 </div>
               </div>
               {/* Container */}
-              {/* <Footer /> */}
           </div>
           :
             <div className='Login'>
-              
               <Routes>
               <Route
                 path="/register"
