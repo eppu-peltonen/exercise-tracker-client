@@ -1,15 +1,11 @@
 import React from 'react'
 
-const Notification = ({message}) => {
+const Notification = ({ message }) => {
   if (message === null) {
     return null
   }
 
-  return (
-    <div>
-      {message}
-    </div>
-  )
+  return <div>{message}</div>
 }
 
 export default Notification

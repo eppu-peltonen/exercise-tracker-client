@@ -1,5 +1,5 @@
-import axios from "axios"
-const baseUrl = "/api/users"
+import axios from 'axios'
+const baseUrl = '/api/users'
 
 const addUser = async (credentials) => {
   try {
@@ -8,7 +8,6 @@ const addUser = async (credentials) => {
   } catch (error) {
     return error.response.data.error
   }
-  
 }
 
 const exports = {
