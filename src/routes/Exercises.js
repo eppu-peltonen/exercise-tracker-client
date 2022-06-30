@@ -3,10 +3,10 @@ import Divider from '../components/Divider'
 import Charts from '../components/Charts'
 import Notification from '../components/Notification'
 
-const Exercises = ({ exercises, setExercises, user, message }) => {
+const Exercises = ({ exercises, setExercises, user }) => {
   return (
     <div className="">
-      <Notification message={message} />
+      <Notification />
       <ExerciseList
         exercises={exercises}
         setExercises={setExercises}

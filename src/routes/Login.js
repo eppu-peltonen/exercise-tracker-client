@@ -7,7 +7,6 @@ const Login = ({
   password,
   setPassword,
   handleLogin,
-  message,
 }) => {
   return (
     <div className="min-h-screen pt-12 md:pt-20 pb-6 px-2 md:px-0">
@@ -20,7 +19,7 @@ const Login = ({
       </header>
 
       <div className="max-w-lg mx-auto my-10 font-bold text-xl text-white text-center">
-        <Notification message={message} />
+        <Notification />
       </div>
 
       <main className="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">

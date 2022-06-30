@@ -1,22 +1,29 @@
 import './App.css'
+
 import React, { useEffect, useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { set } from './reducers/messageSlice'
+
 import Register from './routes/Register'
 import Login from './routes/Login'
 import Exercises from './routes/Exercises'
+
 import loginService from './services/login'
 import exerciseService from './services/exercises'
 import userService from './services/users'
 import Navigation from './components/Navigation'
 
 const App = () => {
-  const [message, setMessage] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [exercises, setExercises] = useState([])
   const [newUser, setNewUser] = useState('')
   const [newPassword, setNewPassword] = useState('')
+
+  const message = useSelector((state) => state.message.value)
+  const dispatch = useDispatch()
 
   //Find and set user at the beginning if stored
   useEffect(() => {
@@ -45,19 +52,21 @@ const App = () => {
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
+      console.log('HALOO TOIMIIKO!!!')
       const user = await loginService.login({
         username,
         password,
       })
+
       window.localStorage.setItem('loggedExerciseAppUser', JSON.stringify(user))
       exerciseService.setToken(user.token)
       setUser(user)
       setUsername('')
       setPassword('')
     } catch (exception) {
-      setMessage('Unknown username or password')
+      dispatch(set('Unknown username or password'))
       setTimeout(() => {
-        setMessage(null)
+        dispatch(set(null))
       }, 5000)
     }
   }
@@ -66,9 +75,9 @@ const App = () => {
     event.preventDefault()
     window.localStorage.removeItem('loggedExerciseAppUser')
     setUser(null)
-    setMessage(`${user.username} logged out`)
+    dispatch(set(`${user.username} logged out`))
     setTimeout(() => {
-      setMessage(null)
+      dispatch(set(null))
     }, 5000)
   }
 
@@ -79,9 +88,9 @@ const App = () => {
       newUser,
       newPassword,
     })
-    setMessage(result)
+    dispatch(set(result))
     setTimeout(() => {
-      setMessage(null)
+      dispatch(set(null))
     }, 5000)
     setNewUser('')
     setNewPassword('')
@@ -105,7 +114,6 @@ const App = () => {
                       exercises={exercises}
                       setExercises={setExercises}
                       user={user}
-                      message={message}
                     />
                   }
                 />
@@ -139,7 +147,6 @@ const App = () => {
                   password={password}
                   setPassword={setPassword}
                   handleLogin={handleLogin}
-                  message={message}
                 />
               }
             />

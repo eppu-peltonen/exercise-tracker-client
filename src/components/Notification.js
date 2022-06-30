@@ -1,6 +1,10 @@
 import React from 'react'
 
-const Notification = ({ message }) => {
+import { useSelector } from 'react-redux/es/exports'
+
+const Notification = () => {
+  const message = useSelector((state) => state.message.value)
+
   if (message === null) {
     return null
   }
