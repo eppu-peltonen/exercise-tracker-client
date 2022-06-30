@@ -3,7 +3,8 @@ import './App.css'
 import React, { useEffect, useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { set } from './reducers/messageSlice'
+
+import { setMessage } from './reducers/messageSlice'
 
 import Register from './routes/Register'
 import Login from './routes/Login'
@@ -52,7 +53,6 @@ const App = () => {
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
-      console.log('HALOO TOIMIIKO!!!')
       const user = await loginService.login({
         username,
         password,
@@ -64,9 +64,9 @@ const App = () => {
       setUsername('')
       setPassword('')
     } catch (exception) {
-      dispatch(set('Unknown username or password'))
+      dispatch(setMessage('Unknown username or password'))
       setTimeout(() => {
-        dispatch(set(null))
+        dispatch(setMessage(null))
       }, 5000)
     }
   }
@@ -75,9 +75,9 @@ const App = () => {
     event.preventDefault()
     window.localStorage.removeItem('loggedExerciseAppUser')
     setUser(null)
-    dispatch(set(`${user.username} logged out`))
+    dispatch(setMessage(`${user.username} logged out`))
     setTimeout(() => {
-      dispatch(set(null))
+      dispatch(setMessage(null))
     }, 5000)
   }
 
@@ -88,9 +88,9 @@ const App = () => {
       newUser,
       newPassword,
     })
-    dispatch(set(result))
+    dispatch(setMessage(result))
     setTimeout(() => {
-      dispatch(set(null))
+      dispatch(setMessage(null))
     }, 5000)
     setNewUser('')
     setNewPassword('')

@@ -6,12 +6,12 @@ export const messageSlice = createSlice({
     messages: [],
   },
   reducers: {
-    set: (state, action) => {
+    setMessage: (state, action) => {
       state.value = action.payload
     },
   },
 })
 
-export const { set } = messageSlice.actions
+export const { setMessage } = messageSlice.actions
 
 export default messageSlice.reducer
